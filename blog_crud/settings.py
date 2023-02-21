@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'blog_crud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_blog',
+        'NAME': 'django_blog', # database name
     }
 }
 
