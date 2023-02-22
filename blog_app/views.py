@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rest_framework.view import APIView
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Blog
@@ -19,22 +19,23 @@ from django.shortcuts import get_object_or_404
 # PUT/iblog/:id -update
 # DELETE/iblog/:id -delete
 
-class Blog(APIView):
-
+class BlogView(APIView):
+  #Index-Get
   def get(self, request):
     print(request)
     Blog = Blog.objects.all()
     data = BlogSerializer(blogs, many=True).data
     return Response(data)
 
-    def post(self, request):
-      print(request.data)
-      data = BlogSerializer(data=request.data)
-      if Blog.is_valid():
-        Blog.save()
-        return Response(Blog.data, status=status.HTTP_201_CREATED)
-      else:
-        return Response(Blog.errors, status=status.HTTP_400_BAD_REQUEST)
+  #Post
+  def post(self, request):
+    print(request.data)
+    blog = BlogSerializer(data=request.data)
+    if blog.is_valid():
+      blog.save()
+      return Response(blog.data, status=status.HTTP_201_CREATED)
+    else:   
+      return Response(blog.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class BlogDetail(APIView):
 
@@ -46,7 +47,7 @@ class BlogDetail(APIView):
   
     #Update
     def put(self, request, pk):
-      
+      print(request)
       blog = get_object_or_404(Blog, pk=pk)
       updated_blog = BlogSerializer(blog, data=request.data)
       if updated_blog.is_valid():
@@ -54,6 +55,7 @@ class BlogDetail(APIView):
         return Response(updated_blog.data)
       else:
         return Response(updated_blog.errors, status=status.HTTP_400_BAD_REQUEST)
+        
   #Delete
     def delete(self, request, pk):
       blog = get_object_or_404(Blog, pk=pk)
