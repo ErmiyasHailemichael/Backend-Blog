@@ -27,7 +27,7 @@ class BlogView(APIView):
     data = BlogSerializer(blogs, many=True).data
     return Response(data)
 
-  #Post
+  #Post -works in postman
   def post(self, request):
     print(request.data)
     blog = BlogSerializer(data=request.data)
@@ -39,13 +39,13 @@ class BlogView(APIView):
     
 class BlogDetail(APIView):
 
-    #Show
+    #Show - works in postman
     def get(self, request, pk):
       blog = get_object_or_404(Blog, pk=pk)
       data = BlogSerializer(blog).data
       return Response(data)
   
-    #Update
+    #Update - works in postman 
     def put(self, request, pk):
       print(request)
       blog = get_object_or_404(Blog, pk=pk)
@@ -55,8 +55,8 @@ class BlogDetail(APIView):
         return Response(updated_blog.data)
       else:
         return Response(updated_blog.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-  #Delete
+
+  #Delete - works in postman
     def delete(self, request, pk):
       blog = get_object_or_404(Blog, pk=pk)
       blog.delete()
