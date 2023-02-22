@@ -31,3 +31,7 @@ class Blog(models.Model):
     # author = Blog(author='Ermi', title='My first blog', pub_date='2021-04-01', body='This is my first blog post')
     # author.save()
     #author = Blog.objects.all()
+
+# >>>  from people_api.models import Person
+# >>>  person = Person(name='Leia Organa', title='Princess', image='https://static.tvtropes.org/pmwiki/pub/images/leia_41.jpg')
+# >>>  person.save()
