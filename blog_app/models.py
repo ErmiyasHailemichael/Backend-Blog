@@ -23,3 +23,11 @@ class Blog(models.Model):
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y') # show date in month day year format
     
+# From people app example
+# name, address, image, title, created_at, updated_at
+
+# from django.db import models
+    # from blog_app.models import Blog
+    # author = Blog(author='Ermi', title='My first blog', pub_date='2021-04-01', body='This is my first blog post')
+    # author.save()
+    #author = Blog.objects.all()
