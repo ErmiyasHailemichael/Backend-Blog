@@ -8,7 +8,8 @@ class Blog(models.Model):
     pub_date = models.DateTimeField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='images/')
+   
+   
 
     class Meta:
         ordering = ['-pub_date'] # newest first
@@ -21,5 +22,4 @@ class Blog(models.Model):
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y') # show date in month day year format
-
     
