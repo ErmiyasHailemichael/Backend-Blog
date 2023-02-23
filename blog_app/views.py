@@ -23,8 +23,8 @@ class BlogView(APIView):
   #Index-Get
   def get(self, request):
     print(request)
-    Blog = Blog.objects.all()
-    data = BlogSerializer(blogs, many=True).data
+    blog = Blog.objects.all()
+    data = BlogSerializer(blog, many=True).data
     return Response(data)
 
   #Post -works in postman
